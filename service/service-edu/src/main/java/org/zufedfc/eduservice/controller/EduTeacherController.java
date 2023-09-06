@@ -2,10 +2,8 @@ package org.zufedfc.eduservice.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.zufedfc.eduservice.entity.EduTeacher;
 import org.zufedfc.eduservice.service.EduTeacherService;
 
@@ -31,6 +29,14 @@ public class EduTeacherController {
     @GetMapping("findAll")
     public List<EduTeacher> findAll(){
         return teacherService.list(null);
+    }
+
+//    2.逻辑删除讲师的方法
+//    rest风格
+//    DELETE http://localhost:8001/eduservice/edu-teacher/1
+    @DeleteMapping ("{id}")
+    public boolean removeById(@PathVariable  String id){
+        return teacherService.removeById(id);
     }
 
 

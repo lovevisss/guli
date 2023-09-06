@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>service</module>
+        <module>common</module>
+        <module>common/service-base</module>
     </modules>
     <version>0.0.1-SNAPSHOT</version>
     <name>guli_parent</name>
