@@ -12,6 +12,9 @@
     <groupId>org.zufedfc</groupId>
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>service-edu</module>
+    </modules>
 
     <dependencies>
 
