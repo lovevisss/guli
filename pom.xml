@@ -11,6 +11,9 @@
     <groupId>com.zufedfc</groupId>
     <artifactId>guli_parent</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>service</module>
+    </modules>
     <version>0.0.1-SNAPSHOT</version>
     <name>guli_parent</name>
     <description>guli_parent</description>
