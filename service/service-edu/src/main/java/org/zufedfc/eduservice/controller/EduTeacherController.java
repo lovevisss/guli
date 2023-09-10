@@ -88,21 +88,42 @@ public class EduTeacherController {
         String begin = teacherQuery.getBegin();
         String end = teacherQuery.getEnd();
         if(!StringUtils.isEmpty(name)){
+            System.out.println(name);
             wrapper.like("name", name);
         }
         if(!StringUtils.isEmpty(level)){
+            System.out.println(level);
             wrapper.eq("level", level);
         }
         if(!StringUtils.isEmpty(begin)){
+            System.out.println(begin);
             wrapper.ge("gmt_create", begin);
         }
         if(!StringUtils.isEmpty(end)){
+            System.out.println(end);
             wrapper.le("gmt_create", end);
         }
 
         teacherService.page(pageTeacher, wrapper);
         return R.ok().data("total", pageTeacher.getTotal()).data("rows", pageTeacher.getRecords());
 
+    }
+
+//    5.添加讲师接口的方法
+//    rest风格
+//    POST http://localhost:8001/eduservice/edu-teacher/addTeacher
+    @ApiOperation(value = "添加讲师")
+    @PostMapping("addTeacher")
+    public R addTeacher(@ApiParam(name = "eduTeacher", value = "讲师对象", required = true) @RequestBody EduTeacher eduTeacher)
+    {
+        boolean save = teacherService.save(eduTeacher);
+        if(save)
+        {
+            return R.ok().message("讲师添加成功");
+        }else
+        {
+            return R.error().message("讲师添加失败");
+        }
     }
 
 
