@@ -9,8 +9,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.zufedfc</groupId>
-    <artifactId>service-base</artifactId>
-
+    <artifactId>common-utils</artifactId>
 
 </project>

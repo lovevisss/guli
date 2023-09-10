@@ -12,6 +12,9 @@
     <groupId>org.zufedfc</groupId>
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>common-utils</module>
+    </modules>
 
     <dependencies>
         <dependency>
