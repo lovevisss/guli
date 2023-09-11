@@ -14,6 +14,7 @@ import org.zufedfc.commonutils.R;
 import org.zufedfc.eduservice.entity.EduTeacher;
 import org.zufedfc.eduservice.entity.vo.EduTeacherQuery;
 import org.zufedfc.eduservice.service.EduTeacherService;
+import org.zufedfc.servicebase.exception.GuliException;
 
 
 /**
@@ -48,6 +49,12 @@ public class EduTeacherController {
     @DeleteMapping ("{id}")
     public R removeById(@ApiParam(name = "id", value = "输入讲师的ID", required = true) @PathVariable  String id){
         boolean flag = teacherService.removeById(id);
+        try {
+
+            int i = 10/0;
+        }catch (Exception e){
+            throw new GuliException(23,"执行了自定义异常处理..");
+        }
         if(flag)
         {
             return R.ok().message("讲师删除成功");
@@ -123,6 +130,34 @@ public class EduTeacherController {
         }else
         {
             return R.error().message("讲师添加失败");
+        }
+    }
+
+//    6.根据讲师id进行查询
+//    rest风格
+//    GET http://localhost:8001/eduservice/edu-teacher/getTeacher/1
+    @ApiOperation(value = "根据讲师id进行查询")
+    @GetMapping("getTeacher/{id}")
+    public R getTeacher(@ApiParam(name = "id", value = "讲师ID", required = true) @PathVariable String id)
+    {
+        EduTeacher eduTeacher = teacherService.getById(id);
+        return R.ok().data("teacher", eduTeacher);
+    }
+
+//    7.讲师修改功能
+//    rest风格
+//    POST http://localhost:8001/eduservice/edu-teacher/updateTeacher
+    @ApiOperation(value = "讲师修改功能")
+    @PostMapping("updateTeacher")
+    public R updateTeacher(@ApiParam(name = "eduTeacher", value = "讲师对象", required = true) @RequestBody EduTeacher eduTeacher)
+    {
+        boolean flag = teacherService.updateById(eduTeacher);
+        if(flag)
+        {
+            return R.ok().message("讲师修改成功");
+        }else
+        {
+            return R.error().message("讲师修改失败");
         }
     }
 
